@@ -1,0 +1,452 @@
+modules:
+  # Sigenergy "plant" registers - accessed on modbus address (sub_target) 247.
+  # These are overall summary stats for the system.
+  - name: "sigenergy_plant"
+    protocol: 'tcp/ip'
+    metrics:
+      - name: time
+        address: 330000
+        dataType: uint32
+        metricType: gauge
+
+      - name: sigenergy_mode
+        address: 330003
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_state
+        labels:
+          type: plant
+        address: 330051
+        dataType: uint16
+        metricType: gauge
+
+      - name: grid_sensor_status
+        address: 330004
+        dataType: uint16
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330005
+        labels:
+          location: grid
+          phase: total
+        dataType: int32
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330052
+        labels:
+          location: grid
+          phase: 1
+        dataType: int32
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330054
+        labels:
+          location: grid
+          phase: 2
+        dataType: int32
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330056
+        labels:
+          location: grid
+          phase: 3
+        dataType: int32
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330015
+        labels:
+          location: plant
+          phase: 1
+        dataType: int32
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330017
+        labels:
+          location: plant
+          phase: 2
+        dataType: int32
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330019
+        labels:
+          location: plant
+          phase: 3
+        dataType: int32
+        metricType: gauge
+
+      - name: active_power_w
+        address: 330031
+        labels:
+          location: plant
+          phase: total
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330007
+        labels:
+          location: grid
+          phase: total
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330058
+        labels:
+          location: grid
+          phase: 1
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330060
+        labels:
+          location: grid
+          phase: 2
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330062
+        labels:
+          location: grid
+          phase: 3
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330021
+        labels:
+          location: plant
+          phase: 1
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330023
+        labels:
+          location: plant
+          phase: 2
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330025
+        labels:
+          location: plant
+          phase: 3
+        dataType: int32
+        metricType: gauge
+
+      - name: reactive_power_var
+        address: 330033
+        labels:
+          location: plant
+          phase: total
+        dataType: int32
+        metricType: gauge
+
+      - name: power_w
+        address: 330035
+        labels:
+          location: PV
+          phase: total
+        dataType: int32
+        metricType: gauge
+
+      - name: power_w
+        address: 330037
+        labels:
+          location: battery
+          phase: total
+        dataType: int32
+        metricType: gauge
+
+      - name: state_of_charge
+        address: 330014
+        dataType: uint16
+        metricType: gauge
+        factor: 0.01
+
+      - name: charge_capacity_wh
+        address: 330064
+        dataType: uint32
+        metricType: gauge
+        factor: 10
+
+      - name: discharge_capacity_wh
+        address: 330066
+        dataType: uint32
+        metricType: gauge
+        factor: 10
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 1
+        address: 330027
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 2
+        address: 330028
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 3
+        address: 330029
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 4
+        address: 330030
+        dataType: uint16
+        metricType: gauge
+
+
+  # "Inverter" metrics, accessed on modbus address 1 by default (installer-configurable I think)
+  # The inverter is a single unit which manages both solar and storage
+  - name: "sigenergy_inverter"
+    protocol: 'tcp/ip'
+    metrics:
+      - name: state_of_charge
+        address: 330601
+        dataType: uint16
+        metricType: gauge
+        factor: 0.01
+
+      - name: temperature_c
+        labels:
+          type: cell_average
+        address: 330603
+        dataType: uint16
+        metricType: gauge
+        factor: 0.1
+
+      - name: cell_voltage_v
+        labels:
+          type: average
+        address: 330604
+        dataType: uint16
+        metricType: gauge
+        factor: 0.001
+
+      - name: sigenergy_state
+        labels:
+          type: inverter
+        address: 330578
+        dataType: uint16
+        metricType: gauge
+
+      - name: power_w
+        address: 330599
+        labels:
+          location: battery
+          phase: total
+        dataType: int32
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 1
+        address: 330605
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 2
+        address: 330606
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 3
+        address: 330607
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 4
+        address: 330608
+        dataType: uint16
+        metricType: gauge
+
+      - name: grid_frequency
+        address: 331002
+        dataType: uint16
+        metricType: gauge
+        factor: 0.01
+
+      - name: temperature_c
+        labels:
+          type: pcs
+        address: 331003
+        dataType: uint16
+        metricType: gauge
+        factor: 0.1
+
+      - name: line_voltage_v
+        labels:
+          phase: 1-2
+        address: 331005
+        dataType: uint32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_voltage_v
+        labels:
+          phase: 2-3
+        address: 331007
+        dataType: uint32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_voltage_v
+        labels:
+          phase: 3-1
+        address: 331009
+        dataType: uint32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_voltage_v
+        labels:
+          phase: 1
+        address: 331011
+        dataType: uint32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_voltage_v
+        labels:
+          phase: 2
+        address: 331013
+        dataType: uint32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_voltage_v
+        labels:
+          phase: 3
+        address: 331015
+        dataType: uint32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_current_a
+        labels:
+          phase: 1
+        address: 331017
+        dataType: int32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_current_a
+        labels:
+          phase: 2
+        address: 331019
+        dataType: int32
+        metricType: gauge
+        factor: 0.01
+
+      - name: line_current_a
+        labels:
+          phase: 3
+        address: 331021
+        dataType: int32
+        metricType: gauge
+        factor: 0.01
+
+      - name: power_factor
+        address: 331023
+        dataType: uint16
+        metricType: gauge
+        factor: 0.001
+
+      - name: pv_voltage_v
+        labels:
+          string: 1
+        address: 331027
+        dataType: int16
+        metricType: gauge
+        factor: 0.1
+
+      - name: pv_voltage_v
+        labels:
+          string: 2
+        address: 331029
+        dataType: int16
+        metricType: gauge
+        factor: 0.1
+
+      - name: pv_voltage_v
+        labels:
+          string: 3
+        address: 331031
+        dataType: int16
+        metricType: gauge
+        factor: 0.1
+
+      - name: pv_voltage_v
+        labels:
+          string: 4
+        address: 331033
+        dataType: int16
+        metricType: gauge
+        factor: 0.1
+
+      - name: pv_current_a
+        labels:
+          string: 1
+        address: 331028
+        dataType: int16
+        metricType: gauge
+        factor: 0.01
+
+      - name: pv_current_a
+        labels:
+          string: 2
+        address: 331030
+        dataType: int16
+        metricType: gauge
+        factor: 0.01
+
+      - name: pv_current_a
+        labels:
+          string: 3
+        address: 331032
+        dataType: int16
+        metricType: gauge
+        factor: 0.01
+
+      - name: pv_current_a
+        labels:
+          string: 4
+        address: 331034
+        dataType: int16
+        metricType: gauge
+        factor: 0.01
+
+      - name: power_w
+        labels:
+          location: solar
+          phase:
+        address: 331035
+        dataType: int32
+        metricType: gauge
