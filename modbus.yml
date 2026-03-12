@@ -450,3 +450,9 @@ modules:
         address: 331035
         dataType: int32
         metricType: gauge
+
+      - name: insulation_resistance
+        address: 331037
+        dataType: uint16
+        metricType: gauge
+        factor: 0.001
