@@ -226,7 +226,7 @@ modules:
         address: 330601
         dataType: uint16
         metricType: gauge
-        factor: 0.01
+        factor: 0.1
 
       - name: temperature_c
         labels:
