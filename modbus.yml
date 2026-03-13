@@ -174,7 +174,7 @@ modules:
         address: 330014
         dataType: uint16
         metricType: gauge
-        factor: 0.01
+        factor: 0.1
 
       - name: charge_capacity_wh
         address: 330064
