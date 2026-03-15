@@ -204,6 +204,12 @@ modules:
         metricType: gauge
         factor: 10
 
+      - name: rated_energy_capacity_kwh
+        address: 330083
+        dataType: uint32
+        metricType: gauge
+        factor: 0.01
+
       - name: sigenergy_alarm
         labels:
           alarm: 1
