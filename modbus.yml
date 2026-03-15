@@ -176,6 +176,22 @@ modules:
         metricType: gauge
         factor: 0.1
 
+      - name: state_of_charge_cutoff
+        labels:
+          type: charge
+        address: 330085
+        dataType: uint16
+        metricType: gauge
+        factor: 0.1
+
+      - name: state_of_charge_cutoff
+        labels:
+          type: discharge
+        address: 330086
+        dataType: uint16
+        metricType: gauge
+        factor: 0.1
+
       - name: charge_capacity_wh
         address: 330064
         dataType: uint32
@@ -216,6 +232,13 @@ modules:
         dataType: uint16
         metricType: gauge
 
+      - name: sigenergy_alarm
+        labels:
+          alarm: 5
+        address: 330072
+        dataType: uint16
+        metricType: gauge
+
 
   # "Inverter" metrics, accessed on modbus address 1 by default (installer-configurable I think)
   # The inverter is a single unit which manages both solar and storage
@@ -224,6 +247,12 @@ modules:
     metrics:
       - name: state_of_charge
         address: 330601
+        dataType: uint16
+        metricType: gauge
+        factor: 0.1
+
+      - name: state_of_health
+        address: 330602
         dataType: uint16
         metricType: gauge
         factor: 0.1
@@ -283,6 +312,13 @@ modules:
       - name: sigenergy_alarm
         labels:
           alarm: 4
+        address: 330608
+        dataType: uint16
+        metricType: gauge
+
+      - name: sigenergy_alarm
+        labels:
+          alarm: 5
         address: 330608
         dataType: uint16
         metricType: gauge
